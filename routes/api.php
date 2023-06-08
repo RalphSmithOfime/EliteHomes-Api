@@ -29,4 +29,6 @@ Route::prefix('v1')->group(function () {
 
     // Declare login route
     Route::post('/login', [AuthController::class, 'login'])->name('login');
+
+    Route::apiResource('/properties', PropertyController::class);
 });
