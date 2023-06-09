@@ -6,6 +6,7 @@ use App\Http\Requests\PropertyRequest;
 use App\Http\Resources\PropertyCollection;
 use App\Http\Resources\PropertyResource;
 use App\Models\Property;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -36,18 +37,44 @@ class PropertyController extends Controller
         ], Response::HTTP_CREATED);
     }
 
-    public function show(Property $id)
+    public function show(string $id)
     {
+        try
+        {
+            $id = Property::findOrFail($id);
+
+            return response()->json([
+                'Message'=>'Property Found',
+                'data'=> new PropertyResource($id),
+            ], Response::HTTP_OK);
+        
+        } catch (\Throwable $th){
+            return response()->json([
+                'Message'=>'Propery not found',
+            ], Response::HTTP_NOT_FOUND);
+        }
 
     }
 
-    public function update(Request $request, Property $property)
+    public function update(Request $request, string $property)
     {
-        $property->update($request->all());
+        try
+        {
+            $property = Property::findOrFail($property);
 
-        return response([
+            $property->update($request->all());
+
+             return response([
             'data' => new PropertyResource($property)
-        ], Response::HTTP_CREATED);
+        ], Response::HTTP_OK);
+        }catch(\Throwable $th){
+            return response()->json([
+                'Message'=>'Property not Found'
+            ], Response::HTTP_NOT_FOUND);
+        }
+        
+
+       
     }
 
     public function destroy(Property $property)
