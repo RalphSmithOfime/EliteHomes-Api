@@ -31,7 +31,8 @@ class PropertyRequest extends FormRequest
             'property_total_floor_area'=>'required|max:255',
             'property_bedroom_number'=>'required|max:3',
             'property_toilet_number'=>'required|max:3',
-
+            'property_plan_image_url'=>'required|max:400;',
+            'property_other_image_url'=>'required|max:400;',
         ];
     }
 }

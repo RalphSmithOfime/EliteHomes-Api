@@ -25,9 +25,7 @@ class PropertyCollection extends ResourceCollection
             'property_total_floor_area'=>$this->property_total_floor_area,
             'property_bedroom_number'=>$this->property_bedroom_number == 0? 'No Bedroom' : $this->property_bedroom_number ,
             'property_toilet_number'=>$this->property_toilet_number == 0 ? 'No Toilet' : $this->property_toilet_number,
-            'href'=>[
-                'link'=>route('properties.show', $this->id)
-            ]
+            'owner_id'=>$this->owner_id,
         ];
     }
 }

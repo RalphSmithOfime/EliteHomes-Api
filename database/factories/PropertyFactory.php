@@ -22,13 +22,13 @@ class PropertyFactory extends Factory
             'property_price'=>fake()->numberBetween(100, 1000),
             'property_category'=>fake()->numberBetween(1,7),
             'property_description'=>fake()->paragraph(),
-            'property_stock'=>fake()->numberBetween(0,5),
+            'property_stock'=>fake()->shuffleString(),
             'property_total_floor_area'=>fake()->numberBetween(10, 20) . ' cm^2',
             'property_bedroom_number'=>fake()->numberBetween(0,5),
             'property_toilet_number'=>fake()->numberBetween(0,3),
             'property_plan_image_url'=>fake()->url(),
             'property_other_image_url'=>fake()->url(),
-            'owner_id'=>fake()->phoneNumber()
+            'owner_id'=>fake()->uuid()
         ];
     }
 }
